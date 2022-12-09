@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_09_102356) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_09_132734) do
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -27,14 +27,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_09_102356) do
   create_table "recipes", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.integer "creators_id"
-    t.integer "categories_id"
-    t.integer "spices_id"
+    t.integer "creator_id", null: false
+    t.integer "spice_id", null: false
+    t.integer "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["categories_id"], name: "index_recipes_on_categories_id"
-    t.index ["creators_id"], name: "index_recipes_on_creators_id"
-    t.index ["spices_id"], name: "index_recipes_on_spices_id"
+    t.index ["category_id"], name: "index_recipes_on_category_id"
+    t.index ["creator_id"], name: "index_recipes_on_creator_id"
+    t.index ["spice_id"], name: "index_recipes_on_spice_id"
   end
 
   create_table "spices", force: :cascade do |t|
@@ -43,4 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_09_102356) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "recipes", "categories"
+  add_foreign_key "recipes", "creators"
+  add_foreign_key "recipes", "spices"
 end
