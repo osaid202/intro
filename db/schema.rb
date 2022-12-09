@@ -17,11 +17,25 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_09_145537) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "categories_spices", id: false, force: :cascade do |t|
+    t.integer "spice_id"
+    t.integer "category_id"
+    t.index ["category_id"], name: "index_categories_spices_on_category_id"
+    t.index ["spice_id"], name: "index_categories_spices_on_spice_id"
+  end
+
   create_table "creators", force: :cascade do |t|
     t.string "name"
     t.string "nationality"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "creators_spices", id: false, force: :cascade do |t|
+    t.integer "spice_id"
+    t.integer "creator_id"
+    t.index ["creator_id"], name: "index_creators_spices_on_creator_id"
+    t.index ["spice_id"], name: "index_creators_spices_on_spice_id"
   end
 
   create_table "recipes", force: :cascade do |t|
@@ -41,20 +55,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_09_145537) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "spices_categories", id: false, force: :cascade do |t|
-    t.integer "spice_id"
-    t.integer "category_id"
-    t.index ["category_id"], name: "index_spices_categories_on_category_id"
-    t.index ["spice_id"], name: "index_spices_categories_on_spice_id"
-  end
-
-  create_table "spices_creators", id: false, force: :cascade do |t|
-    t.integer "spice_id"
-    t.integer "creator_id"
-    t.index ["creator_id"], name: "index_spices_creators_on_creator_id"
-    t.index ["spice_id"], name: "index_spices_creators_on_spice_id"
   end
 
   add_foreign_key "recipes", "categories"

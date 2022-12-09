@@ -1,6 +1,7 @@
+# change class & file names
 class CreateSpicesAndCreators < ActiveRecord::Migration[7.0]
   def change
-    create_table :spices_creators, id: false do |t|
+    create_table :creators_spices, id: false do |t|
       t.belongs_to :spice
       t.belongs_to :creator
     end
