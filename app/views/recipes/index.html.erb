@@ -1,14 +1,36 @@
-<p style="color: green"><%= notice %></p>
 
-<h1>Recipes</h1>
+<%# <div class="container"> %>
 
-<div id="recipes">
-  <% @recipes.each do |recipe| %>
-    <%= render recipe %>
+  <p style="color: green"><%= notice %></p>
+
+  <h1>Recipes</h1>
+
+  <%= link_to "New recipe", new_recipe_path %>
+
+  <div class="row">
+    <%# <div id="recipes"> %>
+    <% @recipes.each do |recipe| %>
+    <div class="col-4">
+      <%= render recipe %>
+      <p>
+        <%= link_to "Show this recipe", recipe %>
+      </p>
+    </div>
+    <% end %>
+    <%# </div> %>
+  </div>
+    <% for i in 1..3 do%>
     <p>
-      <%= link_to "Show this recipe", recipe %>
-    </p>
-  <% end %>
-</div>
+      <% 3.times do%>
 
-<%= link_to "New recipe", new_recipe_path %>
+      <%= pp i %>
+      <% i = i+1%>
+      <% end%>
+    </p>
+    <% end%>
+
+
+
+
+<%# </div> %>
+
