@@ -9,4 +9,10 @@
     <%= creator.nationality %>
   </p>
 
+   <p>
+    <strong>Spices:</strong>
+    <% creator.spices.each do |c|%>
+      <%= link_to c.name, Spice.find(c.id) %>
+    <% end%>
+  </p>
 </div>

@@ -1,0 +1,14 @@
+<div id="<%= dom_id spice %>">
+  <p>
+    <strong>Name:</strong>
+    <%= spice.name %>
+  </p>
+
+  <p>
+    <strong>Categories:</strong>
+    <% spice.categories.each do |c|%>
+      <%= link_to c.name, Category.find(c.id) %>
+    <% end%>
+  </p>
+
+</div>

@@ -11,17 +11,20 @@
 
   <p>
     <strong>Creator:</strong>
-    <%= recipe.creator_id %>
+    <%= link_to Creator.find(recipe.creator_id).name, Creator.find(recipe.creator_id) %>
+
   </p>
 
   <p>
     <strong>Spice:</strong>
-    <%= recipe.spice_id %>
+
+    <%= link_to Spice.find(recipe.spice_id).name, Spice.find(recipe.spice_id) %>
+
   </p>
 
   <p>
     <strong>Category:</strong>
-    <%= recipe.category_id %>
+    <%= link_to Category.find(recipe.creator_id).name, Category.find(recipe.creator_id) %>
   </p>
 
 </div>
