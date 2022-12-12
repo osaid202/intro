@@ -2,7 +2,7 @@
 <%# <div class="container"> %>
 
 
-  <p style="color: green"><%= notice %></p>
+<p style="color: green"><%= notice %></p>
 <%# Pagination %>
 
 
@@ -15,7 +15,7 @@
     <%= f.select :category, options_for_select(@categories), include_blank: true %><br><br>
     <%= submit_tag("Search") %>
   <% end %>
-  <% if params[:search]%>
+  <% if !params[:search].to_s.strip.empty?%>
     <%= "Search term: #{params[:search]}"%>
   <% end%>
 
