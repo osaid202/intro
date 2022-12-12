@@ -25,28 +25,31 @@ Faker::UniqueGenerator.clear # Clears used values for all generators
 # increasing times may not create more recipes?!
 # only 14 unique descriptions, 54 dishes etc...
 # removed uniqueness validation for fake data
-200.times do
+50.times do
   food = Faker::Food
-  category = Category.create(name: food.ethnic_category)
-  spice = Spice.create(name: food.spice)
-  creator = Creator.create(name:        Faker::FunnyName.two_word_name,
+  category = Category.create(name: food.unique.ethnic_category)
+  spice = Spice.create(name: food.unique.spice)
+  creator = Creator.create(name:        Faker::FunnyName.unique.two_word_name,
                            nationality: food.ethnic_category) # Faker::Nation.nationality bad
 
   # don't use unique here,validates. Assumes that a recipe can only be made by a unique creator
-  pp Recipe.create(name: food.dish, description: food.description, creator_id: creator.id,
-                   spice_id: spice.id, category_id: category.id)
+  # loop create recipes?~3
+  3.times do
+    pp Recipe.create(name: food.dish, description: food.description, creator_id: creator.id,
+                     spice_id: spice.id, category_id: category.id)
+  end
 
   # 3.times do |n|
   # .valid? Or Faker::Name.unique.name # This will return a unique name every time it is called
-  if spice.valid? # 'if' skips iteration if false the first time.
+  if spice.valid?
     # Some categories etc... are created through a spice, how to reference foreign key?
-    spice.categories.create(name: food.ethnic_category)
+    spice.categories.create(name: food.unique.ethnic_category)
     spice.creators.create(name: Faker::FunnyName.two_word_name) # Unlikely use case
   end
 
   # What if the spice exists? Create it's own model? works fine
-  creator.spices.create(name: food.spice) if creator.valid?
-  category.spices.create(name: food.spice) if category.valid?
+  creator.spices.create(name: food.unique.spice) if creator.valid?
+  category.spices.create(name: food.unique.spice) if category.valid?
   # end
 end
 

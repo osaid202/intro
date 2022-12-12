@@ -3,9 +3,11 @@ class RecipesController < ApplicationController
 
   # GET /recipes or /recipes.json
   def index
-    @recipes = Recipe.search(params[:search])
+    @recipes = Recipe.search(params[:search], params[:category])
     @recipes = @recipes.order(:created_at).page(params[:page]) # or page params[:page]
     # @recipes = Recipe.where(name: params[:search])
+
+    @categories = Category.distinct.pluck(:name)
   end
 
   # GET /recipes/1 or /recipes/1.json
