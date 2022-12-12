@@ -1,15 +1,24 @@
-
 <%# <div class="container"> %>
+<% if params[:search]%>
+    <%= "Search term: #{params[:search]}"%>
+  <% end%>
 
   <p style="color: green"><%= notice %></p>
-
-  <%= link_to "New recipe", new_recipe_path %>
-
-  <h1>Recipes</h1>
-
-  <%= page_entries_info @recipes %>
+<%# Pagination %>
+  <%= page_entries_info @recipes%>
   <%= paginate @recipes%>
 
+
+  <%= link_to "New recipe", new_recipe_path %>
+<%# Search form %>
+  <%# <%= form_with model: @recipe do%>
+<%= form_with(url: '/recipes', method: 'get', local: true) do %>
+    <%= text_field_tag(:search) %>
+    <%= submit_tag("Search") %>
+  <% end %>
+  <h1>Recipes</h1>
+
+<%# Render recipes %>
   <div class="row">
     <%# <div id="recipes"> %>
     <% @recipes.each do |recipe| %>

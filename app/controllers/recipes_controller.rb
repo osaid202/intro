@@ -3,8 +3,9 @@ class RecipesController < ApplicationController
 
   # GET /recipes or /recipes.json
   def index
-    # @recipes = Recipe.all
-    @recipes = Recipe.order(:name).page params[:page]
+    @recipes = Recipe.search(params[:search])
+    @recipes = @recipes.order(:created_at).page(params[:page]) # or page params[:page]
+    # @recipes = Recipe.where(name: params[:search])
   end
 
   # GET /recipes/1 or /recipes/1.json
@@ -64,6 +65,7 @@ class RecipesController < ApplicationController
   end
 
   # Only allow a list of trusted parameters through.
+  # no need for :search??
   def recipe_params
     params.require(:recipe).permit(:name, :description, :creator_id, :spice_id, :category_id)
   end
