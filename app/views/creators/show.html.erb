@@ -2,6 +2,9 @@
 
 <%= render @creator %>
 
+<%# static map %>
+<%= image_tag google_map(center: Faker::Nation.capital_city)%>%
+
 <div>
   <%= link_to "Edit this creator", edit_creator_path(@creator) %> |
   <%= link_to "Back to creators", creators_path %>
