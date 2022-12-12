@@ -1,5 +1,6 @@
 # README
 ![Recipes](https://user-images.githubusercontent.com/53295189/207064130-6f510bda-8c82-4555-ba54-9c7e1889a148.png)
+
 Goal
 The goal of this project is to create a Ruby on Rails application using data collected from one or more data sources. This is a two part project.
 The first part involves creating the required database tables and pulling data from various data sources. The second part involves using Ruby on Rails to create reports, allow searching, and/or display visualizations based on this data.
