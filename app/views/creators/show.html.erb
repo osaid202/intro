@@ -3,7 +3,11 @@
 <%= render @creator %>
 
 <%# static map %>
-<%= image_tag google_map(center: Faker::Nation.capital_city)%>%
+<%# <%= image_tag google_map(center: Faker::Nation.capital_city)%>
+<%# Embedded interactive map %>
+<iframe width="600" height="450" style="border:0" loading="lazy" allowfullscreen
+src="https://www.google.com/maps/embed/v1/place?q=<%=Faker::Nation.capital_city%>&key=AIzaSyAxLs9qW6C6vP0daTF47-ZUVdbAzde1lsQ"></iframe>
+
 
 <div>
   <%= link_to "Edit this creator", edit_creator_path(@creator) %> |
