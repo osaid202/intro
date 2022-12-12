@@ -15,7 +15,7 @@ require "faker"
 # TODO:
 #   does it give unique of all generator or inside food object only?>Yes across all. ditch object?
 #       maybe, unrelated data but less code
-#   create many assoc through foreign key
+#   create many assoc through foreign key? No , it works auto
 #   too many foreign keys created for little recipes?> was using food.ethnic_category
 #   use unique with validation for all
 #   populate each table first?
@@ -25,7 +25,7 @@ Faker::UniqueGenerator.clear # Clears used values for all generators
 # increasing times may not create more recipes?!
 # only 14 unique descriptions, 54 dishes etc...
 # removed uniqueness validation for fake data
-50.times do
+200.times do
   food = Faker::Food
   category = Category.create(name: food.ethnic_category)
   spice = Spice.create(name: food.spice)
@@ -33,7 +33,7 @@ Faker::UniqueGenerator.clear # Clears used values for all generators
                            nationality: food.ethnic_category) # Faker::Nation.nationality bad
 
   # don't use unique here,validates. Assumes that a recipe can only be made by a unique creator
-  pp Recipe.create(name: food.unique.dish, description: food.description, creator_id: creator.id,
+  pp Recipe.create(name: food.dish, description: food.description, creator_id: creator.id,
                    spice_id: spice.id, category_id: category.id)
 
   # 3.times do |n|

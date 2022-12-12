@@ -11,4 +11,11 @@
     <% end%>
   </p>
 
+     <p>
+    <strong>Creators:</strong>
+    <% spice.creators.each do |c|%>
+      <%= link_to c.name, Creator.find(c.id) %>
+    <% end%>
+  </p>
+
 </div>
